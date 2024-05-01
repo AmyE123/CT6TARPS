@@ -9,7 +9,7 @@ Please ensure you've gone through this checklist before merging into the main br
 # Checklist:
 Please delete options that are not relevant.
 
-Read [this documentation]() if you're stuck on any area here.
+Read [this documentation](https://github.com/AmyE123/CT6TARPS/wiki/Testing-Process-Plan-(Pull-Request-Process)) if you're stuck on any area here.
 
 ## All Changes (DO NOT DELETE)
 - [ ] Changes have been tested.
