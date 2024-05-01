@@ -1,0 +1,13 @@
+RhythmGame/build/*
+RhythmGame/*.nds
+RhythmGame/*.elf
+RhythmGame/*.sav
+RhythmGame/*.ml1
+RhythmGame/*.ml2
+RhythmGame/*.ml3
+RhythmGame/*.ml4
+RhythmGame/*.ml5
+RhythmGame/*.ml6
+RhythmGame/*.ml7
+RhythmGame/*.ml8
+RhythmGame/*.ml9
