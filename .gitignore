@@ -1,3 +1,6 @@
+*.vs
+
+RhythmGame/*.vs
 RhythmGame/build/*
 RhythmGame/*.nds
 RhythmGame/*.elf
