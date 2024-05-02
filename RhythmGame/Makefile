@@ -26,11 +26,11 @@ include $(DEVKITARM)/ds_rules
 #---------------------------------------------------------------------------------
 TARGET   := $(shell basename $(CURDIR))
 BUILD    := build
-SOURCES  := source
-INCLUDES := include
+SOURCES  := source source/Graphics source/Game source/Audio
+INCLUDES := include source/Graphics source/Game source/Audio
 DATA     := data
-GRAPHICS := data
-AUDIO    := data
+GRAPHICS := 
+AUDIO    := audio_data
 ICON     :=
 
 # specify a directory which contains the nitro filesystem
