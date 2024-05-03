@@ -4,8 +4,6 @@
 
 #define CIRCLE_RADIUS 30
 #define CIRCLE_COLOR 1
-#define SCREEN_WIDTH 256
-#define SCREEN_HEIGHT 192
 
 /// <summary>
 /// Powers on just 2D hardware.
@@ -34,10 +32,9 @@ void setupVRAM();
 void initBackground(int layer, BgType type, BgSize size, int mapBase, int tileBase);
 
 /// <summary>
-/// Clears the screen to a specified colour.
+/// Clears the screen.
 /// </summary>
-/// <param name="colour">The colour the screen should be cleared to.</param>
-void clearScreen(u16 colour);
+void clearScreen();
 
 /// <summary>
 /// Sets up the colour palette for drawing things like the rhythm circles.
