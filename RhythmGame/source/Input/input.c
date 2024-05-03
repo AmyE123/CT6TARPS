@@ -1,17 +1,8 @@
 #include "input.h"
 
 void checkTouch(touchPosition touch, mm_sound_effect hit) {
-    if (circles[0].active && abs(touch.px - circles[0].x) < 20 && abs(touch.py - circles[0].y) < 20) {
-        consoleClear();
-
+    if (circles[0].active && abs(touch.px - circles[0].x) < HIT_RANGE && abs(touch.py - circles[0].y) < HIT_RANGE) {
         mmEffectEx(&hit);
         deactivateCircle();
     }
-}
-
-void playHitSound(mm_sound_effect hit) {
-    consoleClear();
-
-    mmEffectEx(&hit);
-    deactivateCircle();
 }
