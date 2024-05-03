@@ -8,3 +8,10 @@ void checkTouch(touchPosition touch, mm_sound_effect hit) {
         deactivateCircle();
     }
 }
+
+void playHitSound(mm_sound_effect hit) {
+    consoleClear();
+
+    mmEffectEx(&hit);
+    deactivateCircle();
+}
