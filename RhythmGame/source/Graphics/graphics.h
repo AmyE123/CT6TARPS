@@ -1,6 +1,7 @@
 #pragma once
 
 #include <nds.h>
+#include <stdio.h>
 
 #define CIRCLE_RADIUS 30
 #define CIRCLE_COLOR 1

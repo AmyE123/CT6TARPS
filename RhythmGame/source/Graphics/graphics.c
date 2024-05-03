@@ -34,36 +34,22 @@ int getBackgroundLayer() {
 }
 
 void initGraphics() {
-	//powerOnGraphics();
-	//setupVideoMode();
-	//setupVRAM();
+	// Power on the 2D graphics engines
+	powerOn(POWER_ALL_2D);
 
-	//// Initialize background for Mode 5, Layer 3 is chosen (0 - 3) as the rhythm circles should be overlays and on top of eveyrthing. 
-	//// BgType_Bmp16 is used for 16-bit bitmap graphics of the form aBBBBBGGGGGRRRRR. BgSize_B16_256x256 is used as it is 256 x 256 pixel 16 bit bitmap background.
-	//initBackground(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0);
+	// Setup the top screen for console output
+	videoSetMode(MODE_0_2D);  // Mode 0 is used for text and uses less video memory
+	vramSetBankA(VRAM_A_MAIN_BG);
+	bgInit(0, BgType_Text4bpp, BgSize_T_256x256, 31, 0); // Initialise MAIN background for Mode 0, Text4bpp stands for 4 bits per pixel which is good for console text.
+	consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 31, 0, true, true); // Higher map base block numbers (like 31) means it is less likely to have been used by other parts of the game. Block 31 ensures the console's text doesn't overlap with graphical data.
 
-	//// RGB15 is a macro to convert 5 bit r g b components into a single 15 bit RGB triplet.
-	//// RGB15 allows 32 levels of each primary colour (0 to 31) meaning this RGB15 colour represents white in RGB555.
-	//clearScreen(RGB15(31, 31, 31));
-
-	//// Sets colour index 1 to black.
-	//setupPalette(1, RGB15(0, 0, 0));
-
-	powerOn(POWER_ALL_2D); // Ensure all 2D engines are powered on
-
-	// Set up the video mode for the bottom screen
-	videoSetModeSub(MODE_5_2D);
+	// Setup the bottom screen for game graphics
+	videoSetModeSub(MODE_5_2D); // Mode 5 is the most flexible
 	vramSetBankC(VRAM_C_SUB_BG);
-
-	// Initialize background for Mode 5, using BgType_Bmp16 for 16-bit bitmap graphics
-	backgroundLayer = bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0);
-
-	// Clear the screen to white
+	backgroundLayer = bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0); // Initialise SUB background for Mode 5, using BgType_Bmp16 for 16-bit bitmap graphics
 	u16* bgMem = bgGetGfxPtr(backgroundLayer);
-	dmaFillWords(0xFFFF, bgMem, 256 * 256 * 2); // 0xFFFF represents white color in RGB555
-
-	// Set black color for circles
-	BG_PALETTE_SUB[1] = RGB15(0, 0, 0); // Color index 1 to black
+	dmaFillWords(0xFFFF, bgMem, 256 * 256 * 2); // Clear the screen to white
+	BG_PALETTE_SUB[1] = RGB15(0, 0, 0); // Set black color for circles
 }
 
 void drawCircle(int x, int y, int bgLayer) {
