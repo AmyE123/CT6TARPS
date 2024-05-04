@@ -28,14 +28,14 @@ int loadBeatsFromFile() {
 }
 
 void initCircle() {
-    repositionCircle(0);
+	repositionCircle(0);
 
-    for (int i = 0; i < num_beats; i++) {
-        circles[0].appearTimes[i] = beats[i];
-    }
+	for (int i = 0; i < num_beats; i++) {
+		circles[0].appearTimes[i] = beats[i];
+	}
 
-    circles[0].nextAppearIndex = 0; // Start with the first beat.
-    circles[0].active = false;  // Initially inactive.
+	circles[0].nextAppearIndex = 0; // Start with the first beat.
+	circles[0].active = false;  // Initially inactive.
 }
 
 void repositionCircle(int index) {
