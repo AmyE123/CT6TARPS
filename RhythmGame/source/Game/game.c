@@ -3,7 +3,6 @@
 #include "../Graphics/graphics.h"
 #include "../Input/input.h"
 #include "../Audio/audio.h"
-#include "../Assembly/asm_functions.h"
 
 /// <summary>
 /// This code updates the gameplay loop.
