@@ -1,35 +1,13 @@
 #include "circle.h"
+#include "data_loader.h"
 #include "../utils.h"
-#include <stdio.h>
+#include <nds.h>
+#include <stdlib.h>
 
 Circle circles[MAX_CIRCLES];
 
-int beats[MAX_BEATS];
-int num_beats = 0;
-
-int loadBeatsFromFile() {
-	FILE* file = fopen("/app_data/timestamps.txt", "rb"); // Opens the timestamps file.
-
-	if (!file) {
-		iprintf("Failed to open the file.\n Did you use the wrong version of the ROM? (NDS/Emulator)\n\n If not, on the root of your SD Card, create a 'app_data' folder and put your 'timestamps.txt' file inside of it.");
-		return 0;  // Return 0 on failure to open the file
-	}
-
-	int value;
-	while (fscanf(file, "%d,", &value) > 0) {
-		if (num_beats < MAX_BEATS) {
-			beats[num_beats++] = value;
-		}
-		else {
-			fclose(file);
-			iprintf("Failed to load beats from file.\n Too many values within the 'timestamps.txt' file.");
-			return 0;  // Return 0 on reaching maximum capacity
-		}
-	}
-
-	fclose(file);
-	return 1;  // Return 1 on successful loading
-}
+extern int beats[MAX_BEATS];
+extern int num_beats;
 
 void initCircle() {
 	repositionCircle(0);

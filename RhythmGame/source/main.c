@@ -3,6 +3,7 @@
 #include "Audio/audio.h"
 #include "Game/game.h"
 #include "utils.h"
+#include "data_loader.h"
 #include <fat.h>
 #include <unistd.h>
 #include <dirent.h>
@@ -11,16 +12,16 @@
 #include <errno.h>
 
 bool gameActive = true;
+int beats[MAX_BEATS];
+int num_beats = 0;
 
 int main(void) {
     consoleDemoInit(); // Initializes the debugging console
     fatInitDefault();  // Initializes the FAT file system
 
-    if (!loadBeatsFromFile()) {
-        while (1) {            
-            swiWaitForVBlank();
-        }
-    }
+	if (!loadBeatsFromFile("/app_data/timestamps.txt", beats, MAX_BEATS, &num_beats)) {
+		while (1) swiWaitForVBlank();
+	}
 
 	initGraphics();
 	initCircle();
