@@ -19,3 +19,18 @@ void checkTouch(touchPosition touch, mm_sound_effect hit);
 /// Breaks the streak if a player misses a touch.
 /// </summary>
 void touchMissed();
+
+/// <summary>
+/// Updates all NDS input.
+/// </summary>
+void updateInput();
+
+/// <summary>
+/// Updates touch input for the NDS.
+/// </summary>
+void updateTouchInput();
+
+/// <summary>
+/// Updates button input for the NDS.
+/// </summary>
+void updateButtonInput();

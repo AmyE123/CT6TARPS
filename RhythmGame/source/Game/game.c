@@ -5,42 +5,13 @@
 #include "../Audio/audio.h"
 #include "../Assembly/asm_functions.h"
 
-static unsigned short prevKeys = 0;
-
+/// <summary>
+/// This code updates the gameplay loop.
+/// </summary>
+/// <param name="gameTime"></param>
+/// <param name="circles"></param>
 void updateGameLoop(int* gameTime, Circle circles[]) {
-	unsigned short currentKeys = read_keys_asm();
-	unsigned short justPressed = currentKeys & (currentKeys ^ prevKeys);
-
-	scanKeys();
-	touchPosition touch;
-	touchRead(&touch);
-
-	if (keysHeld() & KEY_TOUCH) {
-		checkTouch(touch, hit);
-	}
-
-	if (justPressed & KEY_UP) {
-		playHitSoundEffect(1);
-	}
-
-	if (justPressed & KEY_DOWN) {
-		playHitSoundEffect(2);
-	}
-
-	if (justPressed & KEY_LEFT) {
-		playHitSoundEffect(3);
-	}
-
-	if (justPressed & KEY_RIGHT) {
-		playHitSoundEffect(4);
-	}
-
-	if (justPressed & KEY_R || justPressed & KEY_L) {
-		playHitSoundEffect(5);
-	}
-
-	// Update previous keys state at the end of the frame
-	prevKeys = currentKeys;
+	updateInput();
 
 	// Handle circle appearance based on pre-defined beats
 	if (!circles[0].active && circles[0].nextAppearIndex < MAX_BEATS && *gameTime == circles[0].appearTimes[circles[0].nextAppearIndex]) {

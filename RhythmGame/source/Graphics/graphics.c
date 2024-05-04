@@ -41,7 +41,7 @@ void initGraphics() {
 	videoSetMode(MODE_0_2D);  // Mode 0 is used for text and uses less video memory
 	vramSetBankA(VRAM_A_MAIN_BG);
 	bgInit(0, BgType_Text4bpp, BgSize_T_256x256, 31, 0); // Initialise MAIN background for Mode 0, Text4bpp stands for 4 bits per pixel which is good for console text.
-	consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 31, 0, true, true); // Higher map base block numbers (like 31) means it is less likely to have been used by other parts of the game. Block 31 ensures the console's text doesn't overlap with graphical data.
+	consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 31, 0, true, true);
 
 	// Setup the bottom screen for game graphics
 	videoSetModeSub(MODE_5_2D); // Mode 5 is the most flexible
