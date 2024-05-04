@@ -4,6 +4,7 @@
 #include "../utils.h"
 
 #define SCREEN_PADDING 30
+#define CIRCLE_DISAPPEAR_GAP 5
 
 typedef struct {
 	int x, y; // Position
@@ -16,10 +17,24 @@ typedef struct {
 
 extern Circle circles[MAX_CIRCLES];
 
+/// <summary>
+/// For initialising the circle at the very start of the game.
+/// </summary>
 void initCircle();
 
+/// <summary>
+/// To reposition a circle to a random screen position.
+/// </summary>
+/// <param name="index">The index of the circle to reposition. (incase of multiple circles on screen at once.)</param>
 void repositionCircle(int index);
 
-void repositionAndActivateCircle(int index);
+/// <summary>
+/// Activates the circle and calculates durations.
+/// </summary>
+/// <param name="index">The index of the circle to reposition. (incase of multiple circles on screen at once.)</param>
+void activateCircle(int index);
 
+/// <summary>
+/// Manages the deactivation of a circle.
+/// </summary>
 void deactivateCircle();

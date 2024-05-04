@@ -14,7 +14,7 @@ void updateGameLoop(int* gameTime, Circle circles[]) {
 
 	// Handle circle appearance based on pre-defined beats
 	if (!circles[0].active && circles[0].nextAppearIndex < MAX_BEATS && *gameTime == circles[0].appearTimes[circles[0].nextAppearIndex]) {
-		repositionAndActivateCircle(0);
+		activateCircle(0);
 	}
 
 	// Check to deactivate circle

@@ -41,17 +41,17 @@ int beats[] = {
 	9900, 9915, 9930, 9960, 9975, 9990, 10020, 10065, 10095, 10110,
 	10125, 10125, 10170, 10215, 10245, 10260, 10275, 10350, 10380, 10410,
 	10485, 10500, 10530, 10530, 10545, 10560, 10605, 10650, 10665, 10695,
-	10710, 10740, 10785, 10815 }; // Times in frames when circles should appear
+	10710, 10740, 10785, 10815 }; // Times in frames when circles should appear.
 
 void initCircle() {
-	repositionCircle(0); // Se initial random position
+	repositionCircle(0);
 
 	for (int i = 0; i < MAX_BEATS - 1; i++) {
 		circles[0].appearTimes[i] = beats[i];
 	}
 
-	circles[0].nextAppearIndex = 0; // Start with the first beat
-	circles[0].active = false;  // Initially inactive
+	circles[0].nextAppearIndex = 0; // Start with the first beat.
+	circles[0].active = false;  // Initially inactive.
 }
 
 void repositionCircle(int index) {
@@ -59,34 +59,39 @@ void repositionCircle(int index) {
 	circles[index].y = SCREEN_PADDING + rand() % (SCREEN_HEIGHT - 2 * SCREEN_PADDING);
 }
 
-void repositionAndActivateCircle(int index) {
+void activateCircle(int index) {
 	repositionCircle(index);
 
-	// Check if there's a next beat and adjust duration accordingly
+	// Check if there is a next beat.
 	if (circles[index].nextAppearIndex < MAX_BEATS - 1) {
-		int gap = 5; // frames to disappear before the next circle appears
+		// Frames to disappear before the next circle appears. If circles stop spawning suddenly that could mean the defined gap was larger that the duration between the beats.
+		int gap = CIRCLE_DISAPPEAR_GAP;
+
+		// Calculates duration circle should be active.
 		int currentBeatTime = beats[circles[index].nextAppearIndex];
 		int nextBeatTime = beats[circles[index].nextAppearIndex + 1];
 		circles[index].duration = nextBeatTime - currentBeatTime - gap;
 	}
 	else {
-		circles[index].duration = 180; // Default duration if it's the last beat or no next beat
+		circles[index].duration = 180; // Default duration if it's the last beat or no next beat.
 	}
 
+	// Sets the circle as visible and sets the disappear time.
 	circles[index].active = true;
 	circles[index].disappearTime = beats[circles[index].nextAppearIndex] + circles[index].duration;
 }
 
 void deactivateCircle() {
-	circles[0].active = false;
-	clearScreen(); // Clear the screen when the circle is deactivated   
+	circles[0].active = false; // Sets the circle as not visible.
+	clearScreen(); // Clear the screen when the circle is deactivated.   
 
+	// Prepares for next circle appearance.
 	if (circles[0].nextAppearIndex + 1 < MAX_BEATS) {
 		circles[0].nextAppearIndex++;
 		if (circles[0].nextAppearIndex < MAX_BEATS - 1) {
 			int nextAppearanceTime = beats[circles[0].nextAppearIndex];
 			circles[0].disappearTime = nextAppearanceTime + circles[0].duration;
 		}
-		repositionCircle(0); // Reposition the circle for its next appearance
+		repositionCircle(0); // Reposition the circle for its next appearance.
 	}
 }
