@@ -4,11 +4,6 @@
 #include "../Input/input.h"
 #include "../Audio/audio.h"
 
-/// <summary>
-/// This code updates the gameplay loop.
-/// </summary>
-/// <param name="gameTime"></param>
-/// <param name="circles"></param>
 void updateGameLoop(int* gameTime, Circle circles[]) {
 	updateInput();
 
