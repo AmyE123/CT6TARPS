@@ -18,6 +18,12 @@ typedef struct {
 extern Circle circles[MAX_CIRCLES];
 
 /// <summary>
+/// Load the beats from the timestamps file.
+/// </summary>
+/// <returns>An integer, where '1' is success and '0' is fail.</returns>
+int loadBeatsFromFile();
+
+/// <summary>
 /// For initialising the circle at the very start of the game.
 /// </summary>
 void initCircle();
