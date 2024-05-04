@@ -14,11 +14,24 @@
 bool gameActive = true;
 
 int main(void) {
-	if (nitroFSInit(NULL)) {
-		if (loadBeatsFromFile() != 1) {
-			return 0;  // Turn off NDS if loading beats failed
-		}
-	}
+    consoleDemoInit();
+
+    // Initialize file system
+    if (!nitroFSInit(NULL)) {
+        iprintf("Failed to initialize the NITRO file system\n Did you add a 'timestamps.txt' file to the 'nitrofiles' folder?");
+        while (1) {
+            swiWaitForVBlank();
+        }
+        
+    }
+
+    // Load beats from file
+    if (loadBeatsFromFile() != 1) {
+        iprintf("Failed to load beats from file.\n The issue may be that you have surpassed the max amount of beats.");
+        while (1) {
+            swiWaitForVBlank();
+        }
+    }
 
 	initGraphics();
 	initCircle();
