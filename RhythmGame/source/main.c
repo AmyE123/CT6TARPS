@@ -33,7 +33,7 @@ int main(void) {
     if (!loadFile()) {
         iprintf("Failed to load beats from file.\n");
         while (1) {            
-            swiWaitForVBlank(); // Wait for vertical blanking interval
+            swiWaitForVBlank();
         }
     }
 
