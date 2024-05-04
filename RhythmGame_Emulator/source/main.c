@@ -1,9 +1,5 @@
 #include <nds.h>
 #include <filesystem.h>
-#include <string.h>
-#include <dirent.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "Graphics/graphics.h"
 #include "Graphics/circle.h"
@@ -21,8 +17,7 @@ int main(void) {
         iprintf("Failed to initialize the NITRO file system\n Did you add a 'timestamps.txt' file to the 'nitrofiles' folder?");
         while (1) {
             swiWaitForVBlank();
-        }
-        
+        }      
     }
 
     // Load beats from file

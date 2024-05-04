@@ -1,10 +1,3 @@
-#include <nds.h>
-#include <filesystem.h>
-#include <string.h>
-#include <dirent.h>
-#include <stdlib.h>
-#include <stdio.h>
-
 #include "circle.h"
 #include "../utils.h"
 

@@ -1,15 +1,11 @@
+#include <fat.h>
+
 #include "Graphics/graphics.h"
 #include "Graphics/circle.h"
 #include "Audio/audio.h"
 #include "Game/game.h"
 #include "utils.h"
 #include "data_loader.h"
-#include <fat.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
 
 bool gameActive = true;
 int beats[MAX_BEATS];
