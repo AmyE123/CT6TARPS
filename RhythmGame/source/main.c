@@ -12,26 +12,11 @@
 
 bool gameActive = true;
 
-bool loadFile() {
-    consoleDemoInit(); // Initialize console for output, if not already initialized
-    FILE* file = fopen("/app_data/timestamps.txt", "rb");
-
-    if (!file) {
-        iprintf("Failed to open file. Error: %s\n", strerror(errno));
-        return false;  // Return false on failure to open the file
-    }
-
-    fclose(file);
-    iprintf("File loaded successfully.\n");
-    return true;  // Return true on successful loading
-}
-
 int main(void) {
     consoleDemoInit(); // Initializes the debugging console
     fatInitDefault();  // Initializes the FAT file system
 
-    if (!loadFile()) {
-        iprintf("Failed to load beats from file.\n");
+    if (!loadBeatsFromFile()) {
         while (1) {            
             swiWaitForVBlank();
         }

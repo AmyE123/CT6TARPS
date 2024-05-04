@@ -11,6 +11,7 @@ int loadBeatsFromFile() {
 	FILE* file = fopen("/app_data/timestamps.txt", "rb"); // Opens the timestamps file.
 
 	if (!file) {
+		iprintf("Failed to open the file.\n Did you use the wrong version of the ROM? (NDS/Emulator)\n\n If not, on the root of your SD Card, create a 'app_data' folder and put your 'timestamps.txt' file inside of it.");
 		return 0;  // Return 0 on failure to open the file
 	}
 
@@ -21,6 +22,7 @@ int loadBeatsFromFile() {
 		}
 		else {
 			fclose(file);
+			iprintf("Failed to load beats from file.\n Too many values within the 'timestamps.txt' file.");
 			return 0;  // Return 0 on reaching maximum capacity
 		}
 	}
