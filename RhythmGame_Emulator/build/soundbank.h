@@ -1,0 +1,10 @@
+#define SFX_HITSOUND	0
+#define SFX_MUSIC	1
+#define SFX_HITCLAP1	2
+#define SFX_HITCLAP2	3
+#define SFX_HITCLAP3	4
+#define SFX_HITCLAP4	5
+#define SFX_HITCLAP5	6
+#define MSL_NSONGS	0
+#define MSL_NSAMPS	7
+#define MSL_BANKSIZE	7
