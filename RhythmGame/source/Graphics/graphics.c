@@ -3,30 +3,20 @@
 
 int backgroundLayer;
 
-void powerOnGraphics() {
-	powerOn(POWER_ALL_2D);
+void setupTopScreen() {
+	videoSetMode(MODE_0_2D);  // Mode 0 is used for text and uses less video memory
+	vramSetBankA(VRAM_A_MAIN_BG);
+	bgInit(0, BgType_Text4bpp, BgSize_T_256x256, 31, 0); // Initialise MAIN background for Mode 0, Text4bpp stands for 4 bits per pixel which is good for console text.
+	consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 31, 0, true, true);
 }
 
-void setupVideoMode() {
-	videoSetModeSub(MODE_5_2D);
-}
-
-void setupVRAM() {
+void setupBottomScreen() {
+	videoSetModeSub(MODE_5_2D); // Mode 5 is the most flexible
 	vramSetBankC(VRAM_C_SUB_BG);
-}
-
-void initBackground(int layer, BgType type, BgSize size, int mapBase, int tileBase) {
-	backgroundLayer = bgInitSub(layer, type, size, mapBase, tileBase);
-}
-
-void clearScreen() {
-	u16* videoMemory = bgGetGfxPtr(backgroundLayer);
-	dmaFillWords(0xFFFF, videoMemory, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(u16)); // Fill screen with white
-	// Optionally redraw any static background elements here
-}
-
-void setupPalette(u8 index, u16 colour) {
-	BG_PALETTE_SUB[index] = colour;
+	backgroundLayer = bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0); // Initialise SUB background for Mode 5, using BgType_Bmp16 for 16-bit bitmap graphics
+	u16* bgMem = bgGetGfxPtr(backgroundLayer);
+	dmaFillWords(0xFFFF, bgMem, 256 * 256 * 2); // Clear the screen to white
+	BG_PALETTE_SUB[1] = RGB15(0, 0, 0); // Set black color for circles
 }
 
 int getBackgroundLayer() {
@@ -37,20 +27,15 @@ void initGraphics() {
 	// Power on the 2D graphics engines
 	powerOn(POWER_ALL_2D);
 
-	// Setup the top screen for console output
-	videoSetMode(MODE_0_2D);  // Mode 0 is used for text and uses less video memory
-	vramSetBankA(VRAM_A_MAIN_BG);
-	bgInit(0, BgType_Text4bpp, BgSize_T_256x256, 31, 0); // Initialise MAIN background for Mode 0, Text4bpp stands for 4 bits per pixel which is good for console text.
-	consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 31, 0, true, true);
-
-	// Setup the bottom screen for game graphics
-	videoSetModeSub(MODE_5_2D); // Mode 5 is the most flexible
-	vramSetBankC(VRAM_C_SUB_BG);
-	backgroundLayer = bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0); // Initialise SUB background for Mode 5, using BgType_Bmp16 for 16-bit bitmap graphics
-	u16* bgMem = bgGetGfxPtr(backgroundLayer);
-	dmaFillWords(0xFFFF, bgMem, 256 * 256 * 2); // Clear the screen to white
-	BG_PALETTE_SUB[1] = RGB15(0, 0, 0); // Set black color for circles
+	setupTopScreen();
+	setupBottomScreen();
 }
+
+void clearScreen() {
+	u16* videoMemory = bgGetGfxPtr(backgroundLayer);
+	dmaFillWords(0xFFFF, videoMemory, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(u16)); // Fill screen with white
+}
+
 
 void drawCircle(int x, int y, int bgLayer) {
 	// Pointer to background graphics.
