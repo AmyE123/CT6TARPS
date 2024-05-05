@@ -64,9 +64,9 @@ def export_game(platform, song_path, timestamp_path, game_dir):
 
     # Overwrite the music and timestamp files with the selected files
     shutil.copy(song_path, target_music_file)
-    shutil.copy(timestamp_path, target_timestamp_file)
+    shutil.copy(timestamp_path, target_framestamp_file)
 
-    print(f"Files exported for {platform}. Music: {target_music_file}, Framestamps: {target_timestamp_file}")
+    print(f"Files exported for {platform}. Music: {target_music_file}, Framestamps: {target_framestamp_file}")
 
 def create_nds_game():
     if os.path.exists(new_game_dir) and os.path.isfile(os.path.join(new_game_dir, "Makefile")):
@@ -98,12 +98,12 @@ def main():
     song_entry.pack()
     tk.Button(main_window, text="Browse", command=lambda: browse_file(song_entry)).pack()
 
-    tk.Label(main_window, text="Timestamp File (.txt):").pack()
-    timestamp_entry = tk.Entry(main_window, width=50)
-    timestamp_entry.pack()
-    tk.Button(main_window, text="Browse", command=lambda: browse_file(timestamp_entry)).pack()
+    tk.Label(main_window, text="Framestamp File (.txt):").pack()
+    framestamp_entry = tk.Entry(main_window, width=50)
+    framestamp_entry.pack()
+    tk.Button(main_window, text="Browse", command=lambda: browse_file(framestamp_entry)).pack()
 
-    tk.Button(main_window, text="Export", command=lambda: export_game(platform.get(), song_entry.get(), timestamp_entry.get(), application_dir)).pack()
+    tk.Button(main_window, text="Export", command=lambda: export_game(platform.get(), song_entry.get(), framestamp_entry.get(), application_dir)).pack()
 
     tk.Button(main_window, text="Create NDS File", command=lambda: create_nds_game()).pack()
 
