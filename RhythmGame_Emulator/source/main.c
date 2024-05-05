@@ -14,7 +14,7 @@ int main(void) {
 
 	// Initialize file system
 	if (!nitroFSInit(NULL)) {
-		iprintf("Failed to initialize the NITRO file system\n Did you add a 'timestamps.txt' file to the 'nitrofiles' folder?");
+		iprintf("Failed to initialize the NITRO file system\n Did you add a 'framestamps.txt' file to the 'nitrofiles' folder?");
 		while (1) {
 			swiWaitForVBlank();
 		}

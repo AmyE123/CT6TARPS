@@ -7,7 +7,7 @@ int beats[MAX_BEATS];
 int num_beats = 0;
 
 int loadBeatsFromFile() {
-	FILE* file = fopen("timestamps.txt", "r"); // Opens the timestamps file.
+	FILE* file = fopen("framestamps.txt", "r"); // Opens the timestamps file.
 	if (!file) {
 		return 0;  // Return 0 on failure to open the file
 	}

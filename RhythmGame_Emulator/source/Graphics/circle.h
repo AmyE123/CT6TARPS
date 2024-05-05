@@ -18,8 +18,8 @@ typedef struct {
 extern Circle circles[MAX_CIRCLES];
 
 /// <summary>
-/// Load the beats from the timestamps file.
-/// Checks for lack of timestamps file, or too many beats within timestamps.
+/// Load the beats from the framestamps file.
+/// Checks for lack of framestamps file, or too many beats within framestamps.
 /// </summary>
 /// <returns>An integer, where '1' is success and '0' is fail.</returns>
 int loadBeatsFromFile();
