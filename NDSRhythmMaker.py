@@ -58,15 +58,15 @@ def export_game(platform, song_path, timestamp_path, game_dir):
     # Define the target files within the new directory structure
     target_music_file = os.path.join(new_game_dir, "audio_data", "music.wav")
     if platform == "NDS":
-        target_timestamp_file = os.path.join(new_game_dir, "app_data", "timestamps.txt")
+        target_framestamp_file = os.path.join(new_game_dir, "app_data", "framestamps.txt")
     else:
-        target_timestamp_file = os.path.join(new_game_dir, "nitrofiles", "timestamps.txt")
+        target_framestamp_file = os.path.join(new_game_dir, "nitrofiles", "framestamps.txt")
 
     # Overwrite the music and timestamp files with the selected files
     shutil.copy(song_path, target_music_file)
     shutil.copy(timestamp_path, target_timestamp_file)
 
-    print(f"Files exported for {platform}. Music: {target_music_file}, Timestamps: {target_timestamp_file}")
+    print(f"Files exported for {platform}. Music: {target_music_file}, Framestamps: {target_timestamp_file}")
 
 def create_nds_game():
     if os.path.exists(new_game_dir) and os.path.isfile(os.path.join(new_game_dir, "Makefile")):
