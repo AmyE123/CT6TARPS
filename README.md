@@ -1,4 +1,5 @@
 # CT6TARPS
+![vlcsnap-2024-05-08-10h12m40s143](https://github.com/AmyE123/CT6TARPS/assets/55834601/36c026f4-85d9-4302-acbc-eb3ac9d58ca9)
 Exploring NDS development by creating a rhythm game, which has a tool to create custom rhythm ROMS.
 
 ## Table of Contents
